@@ -1,0 +1,11 @@
+{
+  "name": "ha-lunae-screenshots",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "screenshots": "playwright test screenshots.spec.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

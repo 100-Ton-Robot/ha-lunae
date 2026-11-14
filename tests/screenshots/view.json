@@ -1,0 +1,220 @@
+{
+  "title": "Lunae README",
+  "path": "lunae-readme",
+  "type": "sections",
+  "max_columns": 3,
+  "sections": [
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "heading",
+          "heading": "Cairo Bus Stop — position",
+          "icon": "mdi:compass-outline"
+        },
+        {
+          "type": "tile",
+          "entity": "sensor.lunae_cairo_bus_stop_azimuth",
+          "grid_options": {
+            "columns": 6
+          },
+          "name": "Azimuth"
+        },
+        {
+          "type": "tile",
+          "entity": "sensor.lunae_cairo_bus_stop_elevation",
+          "grid_options": {
+            "columns": 6
+          },
+          "name": "Elevation"
+        },
+        {
+          "type": "tile",
+          "entity": "binary_sensor.lunae_cairo_bus_stop_above_horizon",
+          "grid_options": {
+            "columns": 12
+          },
+          "name": "Above horizon"
+        },
+        {
+          "type": "entities",
+          "title": "Rise / set",
+          "entities": [
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_next_moonrise",
+              "name": "Moonrise",
+              "format": "datetime"
+            },
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_next_moonset",
+              "name": "Moonset",
+              "format": "datetime"
+            }
+          ]
+        },
+        {
+          "type": "history-graph",
+          "title": "Last 24 h",
+          "hours_to_show": 24,
+          "entities": [
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_azimuth",
+              "name": "Azimuth"
+            },
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_elevation",
+              "name": "Elevation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "heading",
+          "heading": "Cairo Bus Stop — phase and size",
+          "icon": "mdi:moon-waxing-crescent"
+        },
+        {
+          "type": "tile",
+          "entity": "sensor.lunae_cairo_bus_stop_illumination",
+          "grid_options": {
+            "columns": 6
+          },
+          "name": "Illumination"
+        },
+        {
+          "type": "tile",
+          "entity": "sensor.lunae_cairo_bus_stop_phase",
+          "grid_options": {
+            "columns": 6
+          },
+          "name": "Phase"
+        },
+        {
+          "type": "entities",
+          "title": "Angular size",
+          "entities": [
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_angular_size",
+              "name": "Now"
+            },
+            {
+              "type": "attribute",
+              "entity": "sensor.lunae_cairo_bus_stop_angular_size",
+              "attribute": "min",
+              "name": "Min (all-time)",
+              "suffix": "°"
+            },
+            {
+              "type": "attribute",
+              "entity": "sensor.lunae_cairo_bus_stop_angular_size",
+              "attribute": "max",
+              "name": "Max (all-time)",
+              "suffix": "°"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "title": "Next full / new",
+          "entities": [
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_next_full_moon",
+              "name": "Full moon",
+              "format": "datetime"
+            },
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_next_new_moon",
+              "name": "New moon",
+              "format": "datetime"
+            }
+          ]
+        },
+        {
+          "type": "history-graph",
+          "title": "Illumination, last 24 h",
+          "hours_to_show": 24,
+          "entities": [
+            {
+              "entity": "sensor.lunae_cairo_bus_stop_illumination",
+              "name": "Illumination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "heading",
+          "heading": "Geocentric (centre of the Earth)",
+          "icon": "mdi:earth"
+        },
+        {
+          "type": "tile",
+          "entity": "sensor.lunae_geocentric_illumination",
+          "grid_options": {
+            "columns": 6
+          },
+          "name": "Illumination"
+        },
+        {
+          "type": "tile",
+          "entity": "sensor.lunae_geocentric_phase",
+          "grid_options": {
+            "columns": 6
+          },
+          "name": "Phase"
+        },
+        {
+          "type": "entities",
+          "title": "Angular size",
+          "entities": [
+            {
+              "entity": "sensor.lunae_geocentric_angular_size",
+              "name": "Now"
+            },
+            {
+              "type": "attribute",
+              "entity": "sensor.lunae_geocentric_angular_size",
+              "attribute": "min",
+              "name": "Min (all-time)",
+              "suffix": "°"
+            },
+            {
+              "type": "attribute",
+              "entity": "sensor.lunae_geocentric_angular_size",
+              "attribute": "max",
+              "name": "Max (all-time)",
+              "suffix": "°"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "title": "Next full / new",
+          "entities": [
+            {
+              "entity": "sensor.lunae_geocentric_next_full_moon",
+              "name": "Full moon",
+              "format": "datetime"
+            },
+            {
+              "entity": "sensor.lunae_geocentric_next_new_moon",
+              "name": "New moon",
+              "format": "datetime"
+            }
+          ]
+        },
+        {
+          "type": "markdown",
+          "content": "Azimuth, elevation, above horizon, moonrise and moonset are **disabled by default** on this entry — there is no horizon at the Earth's centre. Enabled, they would show `unknown`."
+        }
+      ]
+    }
+  ]
+}

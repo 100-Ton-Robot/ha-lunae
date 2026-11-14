@@ -7,6 +7,14 @@ Home Assistant's built-in Moon integration gives only the phase. Lunae adds wher
 the Moon is in your sky, how much of it is lit, how big it looks, and when it
 next rises, sets, is full and is new.
 
+## Screenshots
+
+Two entries on one dashboard: a map location in Cairo, and the centre of the Earth.
+
+| Cairo — position | Cairo — phase and size | Centre of the Earth |
+|---|---|---|
+| ![Azimuth, elevation and above horizon tiles, next moonrise and moonset, and a graph of azimuth and elevation](https://raw.githubusercontent.com/100-Ton-Robot/ha-lunae/dev/images/cairo_position.png) | ![Illumination and phase tiles, angular size now with its all-time min and max, next full and new moon, and a graph of illumination](https://raw.githubusercontent.com/100-Ton-Robot/ha-lunae/dev/images/cairo_phase_size.png) | ![Illumination, phase, angular size and next full and new moon for the centre-of-the-Earth entry, with a note that the horizon-based entities are disabled](https://raw.githubusercontent.com/100-Ton-Robot/ha-lunae/dev/images/geocentric.png) |
+
 ## Install
 
 Settings → Marketplace → ⋮ → Add from link → `https://github.com/100-Ton-Robot/ha-lunae`
@@ -123,6 +131,16 @@ the Earth's centre). Checked against PyEphem over 300 random instants from 2020 
 ```sh
 pip install pytest
 pytest -q tests
+```
+
+The screenshots come from a running Home Assistant with two entries named
+"Cairo Bus Stop" (map location) and "Geocentric" (centre of the Earth).
+`tests/screenshots/` adds the view in `view.json` to a dashboard and saves one
+image per section into `images/`:
+
+```sh
+cd tests/screenshots && npm ci
+HA_URL=https://ha.example.com HA_DASHBOARD=<dashboard url_path> HA_TOKEN_FILE=<file with an admin token> npm run screenshots
 ```
 
 ## Credits
