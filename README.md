@@ -50,6 +50,30 @@ are real output for Greenwich at 2026-11-14 18:00 UTC; times are UTC.
 
 Everything updates once a minute. Timestamps are rounded to the minute.
 
+## Recorder (optional)
+
+Every Lunae entity is recorded by default. The non-numeric ones — the four
+timestamps, the phase and above horizon — change rarely (rise/set about once a
+day, full/new about once a month, phase eight times a month), so they add very
+little to the database. To leave them out anyway, add globs to your
+[recorder](https://www.home-assistant.io/integrations/recorder/) exclude:
+
+```yaml
+recorder:
+  exclude:
+    entity_globs:
+      - sensor.lunae*_next_*                # next moonrise, moonset, full moon, new moon
+      - sensor.lunae*_phase
+      - binary_sensor.lunae*_above_horizon
+```
+
+The globs match entries whose name starts with "Lunae" (the default, e.g.
+`sensor.lunae_next_moonrise`, `sensor.lunae_geocentric_phase`). For an entry
+with another name, use its entity IDs instead. Excluded entities have no history
+or logbook; already recorded rows stay until the recorder purges them. Recorder
+settings take effect after a Home Assistant restart. The constant `min`/`max`
+attributes of angular size are never recorded.
+
 ## Accuracy
 
 Lunae uses Paul Schlyter's low-precision analytic theory
