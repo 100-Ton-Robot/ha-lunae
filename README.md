@@ -74,6 +74,35 @@ or logbook; already recorded rows stay until the recorder purges them. Recorder
 settings take effect after a Home Assistant restart. The constant `min`/`max`
 attributes of angular size are never recorded.
 
+## InfluxDB (optional)
+
+The [InfluxDB](https://www.home-assistant.io/integrations/influxdb/) integration
+sends every state change, and every attribute as a field. The connection is set
+up in the UI, but its filters still come from the `influxdb:` section of
+`configuration.yaml`. To leave out the same non-numeric entities, and the
+constant `min`/`max` attributes of angular size (InfluxDB does not honour
+Lunae's unrecorded attributes):
+
+```yaml
+influxdb:
+  exclude:
+    entity_globs:
+      - sensor.lunae*_next_*                # next moonrise, moonset, full moon, new moon
+      - sensor.lunae*_phase
+      - binary_sensor.lunae*_above_horizon
+  component_config_glob:
+    sensor.lunae*_angular_size:
+      ignore_attributes:
+        - min
+        - max
+```
+
+Use `component_config_glob` rather than the top-level `ignore_attributes`, which
+would drop `min`/`max` from every entity (e.g. `input_number`). If your
+`influxdb:` section has an `include:` filter, Lunae entities are only sent when
+they match it, and the exclude still applies on top. Restart Home Assistant
+after changing these settings.
+
 ## Accuracy
 
 Lunae uses Paul Schlyter's low-precision analytic theory
