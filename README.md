@@ -24,6 +24,12 @@ Then Settings → Devices & services → Add integration → **Lunae**, and choo
   enabled they stay `unknown`. Angular size uses the geocentric limits
   `min` 0.490 ° / `max` 0.559 °.
 
+## Versions
+
+Install and update from [releases](https://github.com/100-Ton-Robot/ha-lunae/releases);
+the Marketplace offers releases only. The `dev` branch is work in progress and
+may change at any time — the version in `manifest.json` matches the release tag.
+
 ## Entities
 
 Shown for an entry named "Lunae" (the default for the first entry). Example values
