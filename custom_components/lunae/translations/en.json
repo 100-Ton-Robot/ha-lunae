@@ -2,36 +2,80 @@
   "config": {
     "step": {
       "user": {
-        "title": "Add a Moon location",
-        "description": "Moon position, phase and events are calculated for this location. Add another entry for each extra place.",
-        "data": { "name": "Name", "location": "Location" }
+        "title": "Add Lunae",
+        "description": "Calculate the Moon as seen from a place on the map, or from the centre of the Earth (the viewpoint almanacs use).",
+        "menu_options": {
+          "location": "Map location",
+          "geocentric": "Centre of the Earth"
+        }
+      },
+      "location": {
+        "title": "Map location",
+        "description": "Moon position, phase and events are calculated as seen from this location. Add another entry for each extra place.",
+        "data": {
+          "name": "Name",
+          "location": "Location"
+        }
+      },
+      "geocentric": {
+        "title": "Centre of the Earth",
+        "description": "Values as seen from the Earth's centre. There is no horizon there, so azimuth, elevation, above horizon, moonrise and moonset are created disabled.",
+        "data": {
+          "name": "Name"
+        }
       },
       "reconfigure": {
         "title": "Change location",
-        "data": { "location": "Location" }
+        "data": {
+          "location": "Location"
+        }
       }
     },
     "abort": {
       "already_configured": "This location is already set up.",
-      "reconfigure_successful": "Location updated."
+      "reconfigure_successful": "Location updated.",
+      "geocentric_no_location": "The centre-of-the-Earth entry has no location to change."
     }
   },
   "entity": {
     "binary_sensor": {
-      "above_horizon": { "name": "Above horizon" }
+      "above_horizon": {
+        "name": "Above horizon"
+      }
     },
     "sensor": {
-      "azimuth": { "name": "Azimuth" },
-      "elevation": { "name": "Elevation" },
-      "illumination": { "name": "Illumination" },
+      "azimuth": {
+        "name": "Azimuth"
+      },
+      "elevation": {
+        "name": "Elevation"
+      },
+      "illumination": {
+        "name": "Illumination"
+      },
       "angular_size": {
         "name": "Angular size",
-        "state_attributes": { "min": { "name": "Minimum" }, "max": { "name": "Maximum" } }
+        "state_attributes": {
+          "min": {
+            "name": "Minimum"
+          },
+          "max": {
+            "name": "Maximum"
+          }
+        }
       },
-      "next_rising": { "name": "Next moonrise" },
-      "next_setting": { "name": "Next moonset" },
-      "next_full_moon": { "name": "Next full moon" },
-      "next_new_moon": { "name": "Next new moon" },
+      "next_rising": {
+        "name": "Next moonrise"
+      },
+      "next_setting": {
+        "name": "Next moonset"
+      },
+      "next_full_moon": {
+        "name": "Next full moon"
+      },
+      "next_new_moon": {
+        "name": "Next new moon"
+      },
       "phase": {
         "name": "Phase",
         "state": {

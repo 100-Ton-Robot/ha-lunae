@@ -85,3 +85,14 @@ def test_above_horizon_matches_events(case):
 )
 def test_phase_names(elong, phase):
     assert astro._phase_name(elong) == phase
+
+
+def test_geocentric(case):
+    row, when, state = case
+    geo = astro.compute_geocentric(when)
+    assert abs(geo.angular_size - row["geo_angular_size"]) < TOL_SIZE
+    assert astro.GEO_ANGULAR_SIZE_MIN <= geo.angular_size <= astro.GEO_ANGULAR_SIZE_MAX
+    assert abs(geo.illumination - row["illumination"]) < TOL_ILLUMINATION
+    assert geo.next_full_moon == state.next_full_moon and geo.next_new_moon == state.next_new_moon
+    for key in ("azimuth", "elevation", "above_horizon", "next_rising", "next_setting"):
+        assert getattr(geo, key) is None

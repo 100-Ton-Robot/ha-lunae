@@ -44,6 +44,7 @@ def main() -> None:
         obs.pressure = 0  # geometric positions; rise/set use the 34' horizon below
         obs.horizon = "-0:34"
         moon = ephem.Moon(obs)
+        geo = ephem.Moon(obs.date)  # no observer: geocentric
         rows.append({
             "place": place,
             "lat": lat,
@@ -53,6 +54,7 @@ def main() -> None:
             "elevation": round(math.degrees(moon.alt), 4),
             "illumination": round(moon.moon_phase * 100, 3),
             "angular_size": round(moon.size / 3600, 5),
+            "geo_angular_size": round(geo.size / 3600, 5),
             "next_rising": _event(obs.next_rising),
             "next_setting": _event(obs.next_setting),
             "next_full_moon": ephem.next_full_moon(obs.date).datetime().replace(tzinfo=timezone.utc).isoformat(),

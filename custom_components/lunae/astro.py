@@ -30,6 +30,9 @@ ANGULAR_SIZE_MIN = round(
 ANGULAR_SIZE_MAX = round(
     math.degrees(2 * math.asin(MOON_RADIUS_KM / (356370.0 - EARTH_RADIUS_KM))), 3
 )
+# The same limits seen from the Earth's centre (geocentric mode).
+GEO_ANGULAR_SIZE_MIN = round(math.degrees(2 * math.asin(MOON_RADIUS_KM / 406720.0)), 3)
+GEO_ANGULAR_SIZE_MAX = round(math.degrees(2 * math.asin(MOON_RADIUS_KM / 356370.0)), 3)
 
 # Altitude of the Moon's centre at rise/set for an observer: upper limb on the
 # horizon with standard refraction (34'). The semi-diameter is added per instant.
@@ -53,14 +56,18 @@ PHASES = [
 
 @dataclass(frozen=True)
 class MoonState:
-    """Everything the integration exposes, for one instant and one location."""
+    """Everything the integration exposes, for one instant and one viewpoint.
 
-    azimuth: float          # degrees, N=0 clockwise
-    elevation: float        # degrees, topocentric, geometric (no refraction)
-    illumination: float     # percent of the disk lit
-    phase: str              # one of PHASES
-    angular_size: float     # degrees, topocentric apparent diameter
-    above_horizon: bool     # upper limb above the horizon, with refraction
+    In geocentric mode there is no horizon, so azimuth, elevation,
+    above_horizon, next_rising and next_setting are None.
+    """
+
+    azimuth: float | None       # degrees, N=0 clockwise
+    elevation: float | None     # degrees, topocentric, geometric (no refraction)
+    illumination: float         # percent of the disk lit
+    phase: str                  # one of PHASES
+    angular_size: float         # degrees, apparent diameter from the viewpoint
+    above_horizon: bool | None  # upper limb above the horizon, with refraction
     next_rising: datetime | None
     next_setting: datetime | None
     next_full_moon: datetime
@@ -289,6 +296,24 @@ def _to_minute(when: datetime) -> datetime:
     """Round to the nearest minute — the model is good to a minute or two, and
     whole minutes stop the timestamp sensors writing a new state every update."""
     return (when + timedelta(seconds=30)).replace(second=0, microsecond=0)
+
+
+def compute_geocentric(when: datetime) -> MoonState:
+    """Moon state seen from the Earth's centre: no horizon-dependent values."""
+    d = _day_number(when)
+    _, _, r = _moon_ecliptic(d)
+    return MoonState(
+        azimuth=None,
+        elevation=None,
+        illumination=round(_illumination(d) * 100.0, 1),
+        phase=_phase_name(_elongation(d)),
+        angular_size=round(_angular_size(r * EARTH_RADIUS_KM), 4),
+        above_horizon=None,
+        next_rising=None,
+        next_setting=None,
+        next_full_moon=_to_minute(_from_day_number(_next_elongation(d, 180.0))),
+        next_new_moon=_to_minute(_from_day_number(_next_elongation(d, 0.0))),
+    )
 
 
 def compute(lat: float, lon: float, when: datetime) -> MoonState:

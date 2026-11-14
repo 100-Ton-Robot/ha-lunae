@@ -12,10 +12,17 @@ next rises, sets, is full and is new.
 Settings → Marketplace → ⋮ → Add from link → `https://github.com/100-Ton-Robot/ha-lunae`
 (category: Integration), install, restart Home Assistant.
 
-Then Settings → Devices & services → Add integration → **Lunae**. The form opens
-on your home location; pick another point on the map for a different place. Add
-the integration again for each extra location — each gets its own device and
-entities. Change a location later with **Reconfigure** on the entry.
+Then Settings → Devices & services → Add integration → **Lunae**, and choose:
+
+- **Map location** — values as seen from a place. The form opens on your home
+  location; pick another point on the map for a different place. Add the
+  integration again for each extra location — each gets its own device and
+  entities. Change a location later with **Reconfigure** on the entry.
+- **Centre of the Earth** — values as seen from the Earth's centre, the viewpoint
+  almanacs use (one entry only). There is no horizon there, so azimuth,
+  elevation, above horizon, moonrise and moonset are created **disabled**; if
+  enabled they stay `unknown`. Angular size uses the geocentric limits
+  `min` 0.490 ° / `max` 0.559 °.
 
 ## Entities
 

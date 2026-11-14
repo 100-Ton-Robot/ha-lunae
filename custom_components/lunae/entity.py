@@ -16,6 +16,10 @@ class LunaeEntity(CoordinatorEntity[LunaeCoordinator]):
         super().__init__(coordinator)
         entry = coordinator.config_entry
         self.entity_description = description
+        # Horizon-dependent values don't exist at the Earth's centre: create the
+        # entities (so the device looks the same) but disable them by default.
+        if coordinator.geocentric and getattr(description, "needs_horizon", False):
+            self._attr_entity_registry_enabled_default = False
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},

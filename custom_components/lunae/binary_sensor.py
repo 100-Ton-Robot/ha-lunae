@@ -1,6 +1,8 @@
 """Lunae binary sensor: Moon above the horizon."""
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from homeassistant.components.binary_sensor import (
     BinarySensorEntity,
     BinarySensorEntityDescription,
@@ -11,7 +13,14 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from . import LunaeConfigEntry
 from .entity import LunaeEntity
 
-ABOVE_HORIZON = BinarySensorEntityDescription(key="above_horizon", translation_key="above_horizon")
+@dataclass(frozen=True, kw_only=True)
+class LunaeBinarySensorDescription(BinarySensorEntityDescription):
+    needs_horizon: bool = False
+
+
+ABOVE_HORIZON = LunaeBinarySensorDescription(
+    key="above_horizon", translation_key="above_horizon", needs_horizon=True
+)
 
 
 async def async_setup_entry(
@@ -24,5 +33,5 @@ async def async_setup_entry(
 
 class LunaeAboveHorizon(LunaeEntity, BinarySensorEntity):
     @property
-    def is_on(self) -> bool:
+    def is_on(self) -> bool | None:
         return self.coordinator.data.above_horizon

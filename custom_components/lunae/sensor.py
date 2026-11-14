@@ -22,12 +22,14 @@ from .entity import LunaeEntity
 @dataclass(frozen=True, kw_only=True)
 class LunaeSensorDescription(SensorEntityDescription):
     value_fn: Callable[[astro.MoonState], float | str | datetime | None]
-    attrs_fn: Callable[[astro.MoonState], dict] | None = None
+    has_limits: bool = False
+    needs_horizon: bool = False
 
 
 SENSORS: tuple[LunaeSensorDescription, ...] = (
     LunaeSensorDescription(
         key="azimuth",
+        needs_horizon=True,
         translation_key="azimuth",
         native_unit_of_measurement=DEGREE,
         state_class=SensorStateClass.MEASUREMENT_ANGLE,
@@ -36,6 +38,7 @@ SENSORS: tuple[LunaeSensorDescription, ...] = (
     ),
     LunaeSensorDescription(
         key="elevation",
+        needs_horizon=True,
         translation_key="elevation",
         native_unit_of_measurement=DEGREE,
         state_class=SensorStateClass.MEASUREMENT,
@@ -64,16 +67,18 @@ SENSORS: tuple[LunaeSensorDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
         suggested_display_precision=3,
         value_fn=lambda s: s.angular_size,
-        attrs_fn=lambda _s: {"min": astro.ANGULAR_SIZE_MIN, "max": astro.ANGULAR_SIZE_MAX},
+        has_limits=True,
     ),
     LunaeSensorDescription(
         key="next_rising",
+        needs_horizon=True,
         translation_key="next_rising",
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda s: s.next_rising,
     ),
     LunaeSensorDescription(
         key="next_setting",
+        needs_horizon=True,
         translation_key="next_setting",
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda s: s.next_setting,
@@ -112,5 +117,8 @@ class LunaeSensor(LunaeEntity, SensorEntity):
 
     @property
     def extra_state_attributes(self) -> dict | None:
-        fn = self.entity_description.attrs_fn
-        return fn(self.coordinator.data) if fn else None
+        if not self.entity_description.has_limits:
+            return None
+        if self.coordinator.geocentric:
+            return {"min": astro.GEO_ANGULAR_SIZE_MIN, "max": astro.GEO_ANGULAR_SIZE_MAX}
+        return {"min": astro.ANGULAR_SIZE_MIN, "max": astro.ANGULAR_SIZE_MAX}
