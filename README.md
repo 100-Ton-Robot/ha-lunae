@@ -62,6 +62,19 @@ pip install pytest
 pytest -q tests
 ```
 
+## Credits
+
+- **Icon:** the brand icon (`custom_components/lunae/brand/`) is the
+  [Material Design Icons](https://pictogrammers.com/library/mdi/) glyph
+  [`weather-moonset`](https://pictogrammers.com/library/mdi/icon/weather-moonset/)
+  by [Pictogrammers](https://pictogrammers.com/), redrawn on a dark background by
+  `tools/make_brand.py`. Material Design Icons are licensed under the
+  [Apache License 2.0](https://github.com/Templarian/MaterialDesign/blob/master/LICENSE).
+- **Astronomy:** Paul Schlyter,
+  [How to compute planetary positions](https://stjarnhimlen.se/comp/ppcomp.html).
+- **Test reference values:** [PyEphem](https://rhodesmill.org/pyephem/) (development only, not a runtime dependency).
+
 ## License
 
-MIT
+MIT for the code in this repository — see [LICENSE](LICENSE). The brand icon is a
+derivative of an Apache-2.0 Material Design Icons glyph — see [NOTICE](NOTICE).

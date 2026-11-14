@@ -1,0 +1,18 @@
+Lunae
+Copyright (c) 2026 Aaron Carlson
+Code licensed under the MIT License (see LICENSE).
+
+Third-party material
+--------------------
+
+custom_components/lunae/brand/icon.png
+custom_components/lunae/brand/icon@2x.png
+
+  Derived from the Material Design Icons glyph "weather-moonset"
+  (https://pictogrammers.com/library/mdi/icon/weather-moonset/),
+  Copyright (c) Pictogrammers, licensed under the Apache License,
+  Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0).
+
+  Modifications: the glyph was redrawn from its path geometry and
+  rendered in white with a glow on a dark blue rounded-square
+  background by tools/make_brand.py.

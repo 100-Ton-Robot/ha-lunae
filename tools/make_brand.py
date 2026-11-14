@@ -1,6 +1,7 @@
 """Draw the Lunae brand icons (custom_components/lunae/brand/icon.png, icon@2x.png).
 
-Glyph: Material Design Icons `weather-moonset` (Apache-2.0), redrawn from its
+Glyph: Material Design Icons `weather-moonset` by Pictogrammers
+(Apache-2.0, see NOTICE), https://pictogrammers.com/library/mdi/icon/weather-moonset/ — redrawn from its
 24x24 path geometry: a half disc (centre 12,12, r 5) over three bars with
 round ends (x 2-22 / 4-20 / 6-18, each 2 units tall at y 12, 16, 20).
 Dark-blue-to-black rounded square, ghostly white glyph with a soft glow.
