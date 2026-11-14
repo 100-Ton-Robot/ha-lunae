@@ -62,14 +62,15 @@ little to the database. To leave them out anyway, add globs to your
 recorder:
   exclude:
     entity_globs:
-      - sensor.lunae*_next_*                # next moonrise, moonset, full moon, new moon
-      - sensor.lunae*_phase
-      - binary_sensor.lunae*_above_horizon
+      - sensor.*lunae*_next_*              # next moonrise, moonset, full moon, new moon
+      - sensor.*lunae*_phase
+      - binary_sensor.*lunae*_above_horizon
 ```
 
-The globs match entries whose name starts with "Lunae" (the default, e.g.
-`sensor.lunae_next_moonrise`, `sensor.lunae_geocentric_phase`). For an entry
-with another name, use its entity IDs instead. Excluded entities have no history
+The globs match any entity ID containing "lunae", so they still match when Home
+Assistant adds an area or device name in front (e.g. `sensor.lunae_next_moonrise`,
+`sensor.outside_lunae_home_next_moonrise`, `sensor.lunae_geocentric_phase`). For
+an entry whose name doesn't contain "Lunae", use its entity IDs instead. Excluded entities have no history
 or logbook; already recorded rows stay until the recorder purges them. Recorder
 settings take effect after a Home Assistant restart. The constant `min`/`max`
 attributes of angular size are never recorded.
@@ -85,9 +86,9 @@ up in the UI, but its filters still come from the `influxdb:` section of
 influxdb:
   exclude:
     entity_globs:
-      - sensor.lunae*_next_*                # next moonrise, moonset, full moon, new moon
-      - sensor.lunae*_phase
-      - binary_sensor.lunae*_above_horizon
+      - sensor.*lunae*_next_*              # next moonrise, moonset, full moon, new moon
+      - sensor.*lunae*_phase
+      - binary_sensor.*lunae*_above_horizon
 ```
 
 The angular size `min`/`max` attributes do reach InfluxDB (Lunae keeps them out
