@@ -1,7 +1,7 @@
 {
   "domain": "lunae",
   "name": "Lunae",
-  "codeowners": ["@MoHf7f4"],
+  "codeowners": ["@AaronPortCarlson"],
   "config_flow": true,
   "documentation": "https://github.com/100-Ton-Robot/ha-lunae",
   "integration_type": "service",
