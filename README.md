@@ -26,20 +26,21 @@ Then Settings → Devices & services → Add integration → **Lunae**, and choo
 
 ## Entities
 
-Shown for an entry named "Lunae" (the default for the first entry).
+Shown for an entry named "Lunae" (the default for the first entry). Example values
+are real output for Greenwich at 2026-11-14 18:00 UTC; times are UTC.
 
 | Entity | Example | Notes |
 |---|---|---|
 | `binary_sensor.lunae_above_horizon` | on | Upper limb above the horizon, with standard refraction — flips exactly at moonrise/moonset |
-| `sensor.lunae_azimuth` | 213.4 ° | 0 = north, clockwise (same as `sun.sun`) |
-| `sensor.lunae_elevation` | 27.9 ° | Geometric, as seen from the location; negative below the horizon |
-| `sensor.lunae_illumination` | 63.2 % | Lit fraction of the disk |
-| `sensor.lunae_phase` | waxing_gibbous | `new_moon`, `waxing_crescent`, `first_quarter`, `waxing_gibbous`, `full_moon`, `waning_gibbous`, `last_quarter`, `waning_crescent`. The four principal phases are reported for half a day either side of the exact instant |
-| `sensor.lunae_angular_size` | 0.521 ° | Apparent diameter seen from the location. Attributes `min` (0.482 °) and `max` (0.569 °) are the fixed all-time limits |
-| `sensor.lunae_next_moonrise` | 2026-11-14 15:02 | Timestamp; unknown if the Moon doesn't rise in the next 26 hours (polar regions) |
-| `sensor.lunae_next_moonset` | 2026-11-14 04:41 | Timestamp; as above |
-| `sensor.lunae_next_full_moon` | 2026-11-24 14:53 | Timestamp |
-| `sensor.lunae_next_new_moon` | 2026-12-09 05:52 | Timestamp |
+| `sensor.lunae_azimuth` | 206.8 ° | 0 = north, clockwise (same as `sun.sun`) |
+| `sensor.lunae_elevation` | 9.2 ° | Geometric, as seen from the location; negative below the horizon |
+| `sensor.lunae_illumination` | 25.2 % | Lit fraction of the disk |
+| `sensor.lunae_phase` | waxing_crescent | `new_moon`, `waxing_crescent`, `first_quarter`, `waxing_gibbous`, `full_moon`, `waning_gibbous`, `last_quarter`, `waning_crescent`. The four principal phases are reported for half a day either side of the exact instant |
+| `sensor.lunae_angular_size` | 0.493 ° | Apparent diameter seen from the location. Attributes `min` (0.482 °) and `max` (0.569 °) are the fixed all-time limits |
+| `sensor.lunae_next_moonrise` | 2026-11-15 12:40 | Timestamp; unknown if the Moon doesn't rise in the next 26 hours (polar regions) |
+| `sensor.lunae_next_moonset` | 2026-11-14 19:50 | Timestamp; as above |
+| `sensor.lunae_next_full_moon` | 2026-11-24 15:02 | Timestamp |
+| `sensor.lunae_next_new_moon` | 2026-12-09 00:51 | Timestamp |
 
 Everything updates once a minute. Timestamps are rounded to the minute.
 
