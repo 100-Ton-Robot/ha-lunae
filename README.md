@@ -19,8 +19,8 @@ Two entries on one dashboard: a map location in Cairo, and the centre of the Ear
 
 Settings → Marketplace → search for **Lunae**, install, restart Home Assistant.
 
-If Lunae doesn't show up in search yet (the listing is still pending), add it by
-link instead: Settings → Marketplace → ⋮ → Add from link →
+If Lunae doesn't show up in search yet (for example, a new listing that hasn't
+reached your Marketplace yet), add it by link instead: Settings → Marketplace → ⋮ → Add from link →
 `https://github.com/100-Ton-Robot/ha-lunae` (category: Integration), install,
 restart Home Assistant.
 
