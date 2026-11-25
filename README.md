@@ -17,14 +17,16 @@ Two entries on one dashboard: a map location in Cairo, and the centre of the Ear
 
 ## Install
 
-Settings → Marketplace → search for **Lunae**, install, restart Home Assistant.
+[![Open your Home Assistant instance and open Lunae in the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=100-Ton-Robot&repository=ha-lunae&category=integration)
 
-If Lunae doesn't show up in search yet (for example, a new listing that hasn't
-reached your Marketplace yet), add it by link instead: Settings → Marketplace → ⋮ → Add from link →
-`https://github.com/100-Ton-Robot/ha-lunae` (category: Integration), install,
-restart Home Assistant.
+Settings → Marketplace (on Home Assistant 2026.10 and older: HACS) → search for **Lunae** → **Install**. On HACS, restart Home Assistant afterwards.
 
-Then Settings → Devices & services → Add integration → **Lunae**, and choose:
+Manual install, by link: Settings → Marketplace → ⋮ → Add from link →
+`https://github.com/100-Ton-Robot/ha-lunae` (category: Integration), then install.
+
+[![Open your Home Assistant instance and start setting up Lunae.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=lunae)
+
+Then Settings → Devices & services → Add integration → **Lunae** (or select the badge above), and choose:
 
 - **Map location** — values as seen from a place. The form opens on your home
   location; pick another point on the map for a different place. Add the
